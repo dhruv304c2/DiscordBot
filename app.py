@@ -11,7 +11,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 
 intents = discord.Intents.default()
 intents.message_content = True
-client = discord.Client(intents= intents)
+client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
@@ -23,7 +23,10 @@ async def on_message(message):
 
     print('message received from', message)
     if message.content.startswith('hello'):
-        await message.channel.send('Hello! {0}'.format(message.author))
+        if message.author.nick == None:
+            await message.channel.send('Hello! {0}'.format(message.author))
+        else:
+            await message.channel.send('Hello! {0}'.format(message.author.nick))
         return
 @client.event
 async def on_member_join(member):
