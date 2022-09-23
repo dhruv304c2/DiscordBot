@@ -21,9 +21,13 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    print('message received from {0.author}', message)
+    print('message received from', message)
     if message.content.startswith('hello'):
         await message.channel.send('Hello! {0}'.format(message.author))
         return
+@client.event
+async def on_member_join(member):
+    await member.send('Listen here you little bitch...{0}'.format(member.name))
+    return
 
 client.run(TOKEN);
