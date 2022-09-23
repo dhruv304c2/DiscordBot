@@ -7,7 +7,9 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
 
-client = discord.Client(intents=discord.Intents.default())
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents= intents)
 
 @client.event
 async def on_ready():
@@ -15,10 +17,12 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author == client.user:
-        await message.channel.send("Hi Master!!")
         return
 
-    if message.content.startswith('$hello'):
+    print('message received')
+    if message.content.text.startswith('hello'):
+        print('Hello!')
         await message.channel.send('Hello!')
+        return
 
 client.run(TOKEN);
