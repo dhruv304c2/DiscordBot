@@ -20,7 +20,7 @@ async def on_message(message):
         return
 
     print('message received')
-    if message.content.text.startswith('hello'):
+    if message.content.startswith('hello'):
         print('Hello!')
         await message.channel.send('Hello!')
         return
