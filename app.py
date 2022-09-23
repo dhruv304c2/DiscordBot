@@ -1,3 +1,5 @@
+import string
+
 import discord
 import os
 from dotenv import load_dotenv
@@ -19,10 +21,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    print('message received')
+    print('message received from {0.author}', message)
     if message.content.startswith('hello'):
-        print('Hello!')
-        await message.channel.send('Hello!')
+        await message.channel.send('Hello! {0}'.format(message.author))
         return
 
 client.run(TOKEN);
